@@ -14,6 +14,7 @@
 # Copyright (c) 2008, 2009 Gael Guennebaud, <g.gael@free.fr>
 # Copyright (c) 2009 Benoit Jacob <jacob.benoit.1@gmail.com>
 # Redistribution and use is allowed according to the terms of the 2-clause BSD license.
+message("*************** detecting eigen ********************************")
 
 if(NOT Eigen3_FIND_VERSION)
   if(NOT Eigen3_FIND_VERSION_MAJOR)
@@ -50,8 +51,12 @@ macro(_eigen3_check_version)
 
     message(STATUS "Eigen3 version ${EIGEN3_VERSION} found in ${EIGEN3_INCLUDE_DIR}, "
                    "but at least version ${Eigen3_FIND_VERSION} is required")
+  else(NOT EIGEN3_VERSION_OK)
+
+    message("version OK")
   endif(NOT EIGEN3_VERSION_OK)
 endmacro(_eigen3_check_version)
+
 
 if (EIGEN3_INCLUDE_DIR)
 
@@ -61,13 +66,14 @@ if (EIGEN3_INCLUDE_DIR)
 
 else (EIGEN3_INCLUDE_DIR)
 
-  find_path(EIGEN3_INCLUDE_DIR NAMES signature_of_eigen3_matrix_library
-      PATHS
-      ${CMAKE_INSTALL_PREFIX}/include
-      ${KDE4_INCLUDE_DIR}
-      PATH_SUFFIXES eigen3 eigen
-    )
+  # find_path(EIGEN3_INCLUDE_DIR NAMES signature_of_eigen3_matrix_library
+  #    PATHS
+  #    ${CMAKE_INSTALL_PREFIX}/include
+  #    ${KDE4_INCLUDE_DIR}
+  #    PATH_SUFFIXES eigen3 eigen
+  #  )
 
+  set(EIGEN3_INCLUDE_DIR $ENV{HOME}/include)
   if(EIGEN3_INCLUDE_DIR)
     _eigen3_check_version()
   endif(EIGEN3_INCLUDE_DIR)
@@ -78,5 +84,3 @@ else (EIGEN3_INCLUDE_DIR)
   mark_as_advanced(EIGEN3_INCLUDE_DIR)
 
 endif(EIGEN3_INCLUDE_DIR)
-
-
