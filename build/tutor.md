@@ -25,28 +25,10 @@ make install
 ```
 conda activate KittyHub
 ```
-5. find python place by typing:
+and run python setup
 ```
-which python
-```
-in my case, the output should be like:
-```
-/home/turquoisekitty2/anaconda3/envs/KittyHub/bin/python
-```
-if you are in the base conda environment, the output should be like:
-```
-/home/turquoisekitty2/anaconda3/bin/python
-```
-6. you should manually make python reachable by cmake, so you edit .bashrc by:
-```
-cd ~
+python setup.py
 ```
 ```
-vim .bashrc
+source ~/.bashrc
 ```
-then insert to the bottom line:
-```
-export CPLUS_INCLUDE_PATH="$CPLUS_INCLUDE_PATH:/home/turquoisekitty2/anaconda3/envs/KittyHub/include/python3.7"
-export C_INCLUDE_PATH="$CPLUS_INCLUDE_PATH:/home/turquoisekitty2/anaconda3/envs/KittyHub/include/python3.7"
-```
-this is the case for my computer, but i believe, after finishing step 5 and get the python place, you can surely replace `/home/turquoisekitty2/anaconda3/envs/KittyHub` with your own environment root path
