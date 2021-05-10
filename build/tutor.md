@@ -9,8 +9,20 @@ chmod a+x setup.sh
 ```
 2. install cmake by:
 ```
-cd cmake3_20/cmake-3.20.1
+cd cmake-3.20.1
 ```
 ```
 ./bootstrap --prefix=$HOME
 ```
+```
+make
+```
+```
+make install
+```
+3. restart the terminal to make changes work(eg: disconnect from server and reconnect)
+4. activate the python environment, in my case, this goes like:
+```
+conda activate *environment name*
+```
+5. run python script `setup.py`
