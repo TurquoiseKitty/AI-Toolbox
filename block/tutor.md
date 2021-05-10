@@ -8,6 +8,9 @@ chmod a+x setup.sh
 chmod a+x setup2.sh
 ```
 ```
+chmod a+x setupBoost.sh
+```
+```
 ./setup.sh
 ```
 2. install cmake by:
@@ -28,11 +31,26 @@ make install
 ```
 conda activate KittyHub
 ```
-and run python setup
+pip install:
+```
+pip install python-dev-tools
+```
+and run python setup:
 ```
 python setup.py
 ```
 ```
 source ~/.bashrc
 ```
-5. install boost manually. Stay in the current `block` folder, and run
+5. install boost manually. Stay in the current `block` folder, and run:
+
+```
+cp -r boost_1_68_0/boost $HOME/include/
+```
+```
+cd boost_1_68_0
+```
+```
+./bootstrap.sh --with-python=$HOME/anaconda3/envs/ENV/include/python3.8 --with-python-root=$HOME/anaconda3/envs/ENV/include/python3.8 --prefix=$HOME
+./b2 install -a --with=all
+```
