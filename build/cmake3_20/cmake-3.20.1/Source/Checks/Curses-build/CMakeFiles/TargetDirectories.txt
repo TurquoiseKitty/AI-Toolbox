@@ -1,2 +1,0 @@
-/home/turquoisekitty/download/cmake3_20/cmake-3.20.1/Source/Checks/Curses-build/CMakeFiles/rebuild_cache.dir
-/home/turquoisekitty/download/cmake3_20/cmake-3.20.1/Source/Checks/Curses-build/CMakeFiles/edit_cache.dir

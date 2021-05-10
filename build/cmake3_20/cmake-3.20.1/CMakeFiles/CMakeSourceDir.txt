@@ -1,1 +1,0 @@
-/home/turquoisekitty/download/cmake3_20/cmake-3.20.1
