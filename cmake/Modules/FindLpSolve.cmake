@@ -6,15 +6,18 @@
 ##############################################################################
 
 ## Detect lpsolve
+message("*************** detecting lpsolve ********************************")
+
 INCLUDE(CheckCXXSourceCompiles)
 
-SET(LPSOLVE_INCLUDE_DIR "" CACHE STRING "Full path to the lpsolve headers")
+SET(LPSOLVE_INCLUDE_DIR "$ENV{HOME}/include" CACHE STRING "Full path to the lpsolve headers")
 MARK_AS_ADVANCED(LPSOLVE_INCLUDE_DIR)
 
-SET(LPSOLVE_LIBRARIES "" CACHE STRING "Full path to the lpsolve55 library (including the library)")
+SET(LPSOLVE_LIBRARIES "$ENV{HOME}/lib" CACHE STRING "Full path to the lpsolve55 library (including the library)")
 MARK_AS_ADVANCED(LPSOLVE_LIBRARIES)
 
 SET(LPSOLVE_INCLUDE_TRIAL_PATH
+    $ENV{HOME}/include
     /sw/include
     /usr/include
     /usr/local/include
@@ -23,14 +26,18 @@ SET(LPSOLVE_INCLUDE_TRIAL_PATH
     C:/Program\ Files
     )
 
+Message("include 1 : ${LPSOLVE_INCLUDE_PATH}")
+
 FIND_PATH(LPSOLVE_INCLUDE_PATH lpsolve/lp_lib.h ${LPSOLVE_INCLUDE_PATH} ${LPSOLVE_INCLUDE_TRIAL_PATH})
 IF (LPSOLVE_INCLUDE_PATH)
+    Message("include 2 : ${LPSOLVE_INCLUDE_PATH}")
     STRING(REGEX REPLACE "lpsolve/*$" "" LPSOLVE_INCLUDE_PATH ${LPSOLVE_INCLUDE_PATH})
     SET(LPSOLVE_INCLUDE_DIR ${LPSOLVE_INCLUDE_PATH} CACHE STRING "Full path to the lpsolve headers" FORCE)
 
     GET_FILENAME_COMPONENT(LPSOLVE_INSTALL_BASE_PATH ${LPSOLVE_INCLUDE_DIR} PATH)
 
     SET(LPSOLVE_LIB_TRIALPATH
+        $ENV{HOME}/lib
         ${LPSOLVE_INCLUDE_DIR}
         ${LPSOLVE_INSTALL_BASE_PATH}/lib
         /usr/lib/
@@ -38,12 +45,18 @@ IF (LPSOLVE_INCLUDE_PATH)
         /opt/lib
         )
 
+    message("Library 1 : ${LPSOLVE_LIBRARIES}")
     FIND_LIBRARY(TMP_LPSOLVE_LIBRARIES
         NAMES lpsolve55
-        PATHS ${LPSOLVE_LIBRARIES} ${LPSOLVE_LIB_TRIALPATH}
-        PATH_SUFFIXES lp_solve lpsolve)
+        PATHS ${LPSOLVE_LIBRARIES}
+        PATH_SUFFIXES lp_solve lpsolve
+        NO_DEFAULT_PATH)
+
+    message("tp Library 1 : ${TMP_LPSOLVE_LIBRARIES}")
+
     SET(LPSOLVE_LIBRARIES ${TMP_LPSOLVE_LIBRARIES} CACHE STRING "Full path to the lpsolve55 library (including the library)" FORCE)
     IF (LPSOLVE_LIBRARIES)
+        message("Library 2 : ${LPSOLVE_LIBRARIES}")
         SET(LPSOLVE_FOUND TRUE)
 
         ## Try to find out if lpsolve can link standalone
