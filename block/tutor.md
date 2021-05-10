@@ -54,3 +54,10 @@ cd boost_1_68_0
 ./bootstrap.sh --with-python=$HOME/anaconda3/envs/ENV/include/python3.8 --with-python-root=$HOME/anaconda3/envs/ENV/include/python3.8 --prefix=$HOME
 ./b2 install -a --with=all
 ```
+6. now the environment should be OK to go. Do the rest as the author has instructed:
+```
+mkdir build
+cd build/
+cmake -DMAKE_PYTHON=1 ..
+make
+```
