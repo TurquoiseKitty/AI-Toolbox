@@ -46,7 +46,7 @@ vim .bashrc
 ```
 then insert to the bottom line:
 ```
-export CPLUS_INCLUDE_PATH="$CPLUS_INCLUDE_PATH:/home/turquoisekitty2/anaconda3/envs/KittyHub/include/python3.8"
-export C_INCLUDE_PATH="$CPLUS_INCLUDE_PATH:/home/turquoisekitty2/anaconda3/envs/KittyHub/include/python3.8"
+export CPLUS_INCLUDE_PATH="$CPLUS_INCLUDE_PATH:/home/turquoisekitty2/anaconda3/envs/KittyHub/include/python3.7"
+export C_INCLUDE_PATH="$CPLUS_INCLUDE_PATH:/home/turquoisekitty2/anaconda3/envs/KittyHub/include/python3.7"
 ```
 this is the case for my computer, but i believe, after finishing step 5 and get the python place, you can surely replace `/home/turquoisekitty2/anaconda3/envs/KittyHub` with your own environment root path
