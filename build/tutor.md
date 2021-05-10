@@ -5,6 +5,9 @@ Follow the following steps to finish the installation:
 chmod a+x setup.sh
 ```
 ```
+chmod a+x setup2.sh
+```
+```
 ./setup.sh
 ```
 2. install cmake by:
