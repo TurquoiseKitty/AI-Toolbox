@@ -125,14 +125,26 @@ set(EIGEN_VERSION_REQUIRED 3.2.92)
 # set(Boost_USE_STATIC_LIBS ON)
 # add_definitions(-DBOOST_PYTHON_STATIC_LIB)
 
+set(BOOST_ROOT $ENV{HOME})
+set(Boost_INCLUDE_DIR $ENV{HOME}/include) 
+set(Boost_LIBRARY_DIR $ENV{HOME}/lib)
+
 find_package(Boost ${BOOST_VERSION_REQUIRED} REQUIRED)
 include_directories(SYSTEM ${Boost_INCLUDE_DIRS})
 
 find_package(Eigen3 ${EIGEN_VERSION_REQUIRED} REQUIRED)
 include_directories(SYSTEM ${EIGEN3_INCLUDE_DIR})
 
-find_package(LpSolve REQUIRED)
+find_package(LpSolve REQUIRED )
 include_directories(SYSTEM ${LPSOLVE_INCLUDE_DIR})
+
+message("********************************************************")
+message("boost path ${Boost_INCLUDE_DIRS}")
+message("eigen path ${EIGEN3_INCLUDE_DIRS}")
+message("lp path ${LPSOLVE_INCLUDE_DIRS}")
+message("********************************************************")
+
+
 
 if (MAKE_PYTHON)
     # If we build Python's shared library, then all libraries we link into it
@@ -160,11 +172,17 @@ if (MAKE_PYTHON)
     else()
         # This tries to find out which version of Python we should be targeting depending
         # on which interpreter is found, but prefers Python 3 so if we selected that we should be alright.
+
+
         find_package(Python COMPONENTS Interpreter Development REQUIRED)
+        message("--------------------python version 1:${Python_VERSION_MAJOR}")
         set(PYTHON_VERSION ${Python_VERSION_MAJOR})
     endif()
 
+    message("--------------------python version 2:${Python_VERSION_MAJOR}")
     find_package(Boost ${BOOST_VERSION_REQUIRED} COMPONENTS python${Python_VERSION_MAJOR}${Python_VERSION_MINOR} REQUIRED)
+    #find_package(Boost ${BOOST_VERSION_REQUIRED} COMPONENTS Python REQUIRED)
+    
     # Set independent name for lib
     set(BOOST_PYTHON_LIBRARY_NAME "Boost_PYTHON${Python_VERSION_MAJOR}${Python_VERSION_MINOR}_LIBRARIES")
 
