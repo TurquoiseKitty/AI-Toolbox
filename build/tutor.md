@@ -1,6 +1,6 @@
 # Installation Tutorial
 Follow the following steps to finish the installation:
-1. cd into the current `build` directory, then run setup.sh by:
+1. cd into the current `block` directory, then run setup.sh by:
 ```
 chmod a+x setup.sh
 ```
@@ -35,3 +35,4 @@ python setup.py
 ```
 source ~/.bashrc
 ```
+5. install boost manually. Stay in the current `block` folder, and run
